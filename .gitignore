@@ -36,6 +36,9 @@ testem.log
 /e2e/*.js
 /e2e/*.map
 
+# front-end (bower)
+/src/assets/bower_components/*
+
 #System Files
 .DS_Store
 Thumbs.db
