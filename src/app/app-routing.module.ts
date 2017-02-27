@@ -8,12 +8,12 @@ import { CalendarMainComponent } from './calendar/calendar-main.component';
 
 const appRoutes: Routes = [
     { path: '', component: MainComponent },
-    { path: 'calendar', component: CalendarMainComponent },
+    { path: 'calendar', component: CalendarMainComponent},
     { path: '**', component: NotFoundComponent }
 ];
 
 @NgModule({
-    imports: [RouterModule.forRoot(appRoutes), CalendarModule],
+    imports: [RouterModule.forRoot(appRoutes), CalendarModule ],
     exports: [RouterModule]
 })
 export class AppRoutingModule {}
