@@ -1,5 +1,6 @@
 # AngularCalendar
-<<<<<<< HEAD
+
+Calendar Project by Angularj
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.0-rc.0.
 
@@ -26,6 +27,3 @@ Before running the tests make sure you are serving the app via `ng serve`.
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
-=======
-Calendar Project by Angular
->>>>>>> 51bf1516d3d549ecc2a0eced605a478c398ec0d7
