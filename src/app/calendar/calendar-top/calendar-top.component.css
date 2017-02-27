@@ -2,6 +2,7 @@
     height:auto;
 }
 #common_btn {
+    border: 1px lightgray solid;
     padding-left: 7px;
     padding-right: 7px;
 }
