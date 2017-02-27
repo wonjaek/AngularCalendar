@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-calendar-content',
+  selector: 'cal-content',
   templateUrl: './calendar-content.component.html',
   styleUrls: ['./calendar-content.component.css']
 })
