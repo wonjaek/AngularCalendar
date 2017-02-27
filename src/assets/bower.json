@@ -1,0 +1,26 @@
+{
+  "name": "ngCalendar",
+  "homepage": "https://github.com/wonjaek/AngularCalendar",
+  "authors": [
+    "\"Daeho Han <supreme2705@gmail.com\"",
+    "\"Wonjae Kim <wonjaek36@gmail.com>\""
+  ],
+  "description": "Calendar Project by Angular",
+  "main": "",
+  "keywords": [
+    "Angular2"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies" : {
+    "materialize" : "*",
+    "jquery": "~2.1.3"
+  }
+}
