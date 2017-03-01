@@ -9,6 +9,7 @@ import { CalendarDayComponent } from './calendar-day/calendar-day.component';
 import { CalendarWeekComponent } from './calendar-week/calendar-week.component';
 import { CalendarMonthComponent } from './calendar-month/calendar-month.component';
 import { CalendarRoutingModule } from './calendar.routing';
+import { CalendarToDoListComponent } from './calendar-to-do-list/calendar-to-do-list.component';
 
 @NgModule ({
     imports: [CommonModule, 
@@ -22,7 +23,7 @@ import { CalendarRoutingModule } from './calendar.routing';
         CalendarContentComponent, 
         CalendarDayComponent, 
         CalendarWeekComponent, 
-        CalendarMonthComponent
+        CalendarMonthComponent, CalendarToDoListComponent
     ],
     exports: [CalendarMainComponent]
 })
