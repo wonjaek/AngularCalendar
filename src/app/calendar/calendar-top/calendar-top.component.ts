@@ -8,9 +8,9 @@ import { CalendarService } from '../calendar.service';
   providers: [CalendarService]
 })
 export class CalendarTopComponent implements OnInit {
-  date : string;
+  nowDate : string;
   constructor(private calendarService: CalendarService) { 
-    this.date = calendarService.getDate();
+    this.nowDate = calendarService.getDate(0, 0, 0);
   }
 
   ngOnInit() {
