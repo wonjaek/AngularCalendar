@@ -6,16 +6,20 @@
             <li><a href="">Help</a></li>
             <li><a href="">Sign-Up</a></li>
             <li>
-                <a href="#login_modal" *ngIf="!authService.isLogin" >Sign-In</a>
-                <a href="" *ngIf="authService.isLogin">Sign-Out</a>
+                <!--<a href="#login_modal" *ngIf="!authService.isLogin" >Sign-In</a>
+                <a href="" *ngIf="authService.isLogin">Sign-Out</a>-->
+                <a href="#login_modal" >Sign-In</a>
+                <a href="" >Sign-Out</a>
             </li>
         </ul>
         <ul class="side-nav" id="mobile-demo">
             <li><a href="">Help</a></li>
             <li><a href="">Sign-Up</a></li>
             <li>
-                <a href="#login_modal" *ngIf="!authService.isLogin">Sign-In</a>
-                <a href="" *ngIf="authService.isLogin">Sign-Out</a>
+                <!--<a href="#login_modal" *ngIf="!authService.isLogin">Sign-In</a>
+                <a href="" *ngIf="authService.isLogin">Sign-Out</a>-->
+                <a href="#login_modal" >Sign-In</a>
+                <a href="" >Sign-Out</a>
             </li>
         </ul>
     </div>
@@ -25,10 +29,13 @@
 <div id="login_modal" class="modal">
     <div class="modal-content">
         <h4>Login</h4>
-        <input type="email" name="email" [(ngModel)]="userEmail" placeholder="Input Email">
-        <input type="password" name="password" [(ngModel)]="userEmail" placeholder="Input Email">
+        <input type="email" name="email" placeholder="Input Email">
+        <!--<input type="email" name="email" [(ngModel)]="userEmail" placeholder="Input Email">-->
+        <input type="password" name="password" placeholder="Input Password">
+        <!--<input type="password" name="password" [(ngModel)]="userEmail" placeholder="Input Password">-->
     </div>
     <div class="modal-footer">
-        <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+        <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Sign-In</a>
+        <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Sign-Out</a>
     </div>
 </div>
