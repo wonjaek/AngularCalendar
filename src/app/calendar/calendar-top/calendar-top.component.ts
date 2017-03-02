@@ -8,11 +8,28 @@ import { CalendarService } from '../calendar.service';
   providers: [CalendarService]
 })
 export class CalendarTopComponent implements OnInit {
-  nowDate : string;
+  private nowDate : string;
+
   constructor(private calendarService: CalendarService) { 
-    this.nowDate = calendarService.getDate(0, 0, 0);
+    this.nowDate = calendarService.getDate().toDateString();
   }
 
+  setToDay() {
+    this.calendarService.setToDay();
+    this.nowDate = this.calendarService.getDate().toDateString();
+  }
+
+  setNextDay() {
+    this.calendarService.setDate(0, 0, 1);
+    this.nowDate = this.calendarService.getDate().toDateString();
+  }
+
+  setPrevDay() {
+    this.calendarService.setDate(0, 0, -1);
+    this.nowDate = this.calendarService.getDate().toDateString();
+  }
+
+  
   ngOnInit() {
   }
 

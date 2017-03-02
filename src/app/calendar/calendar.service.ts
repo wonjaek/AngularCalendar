@@ -2,14 +2,24 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class CalendarService {
-  getDate(year, month, date) {
-    let d : Date = new Date();
-    let dayArr : string[] = ['일', '월', '화', '수', '목', '금', '토'];
-    return (d.getFullYear() + year) + '년 ' 
-            + (d.getMonth() + 1 + month) + '월 ' 
-            + (d.getDate() + date) + '일 '
-            + '(' + dayArr[d.getDay() + date] + ')';
+  nowDay : Date;
+
+  setDate(year, month, date) {
+    let tDate: Date = this.nowDay;
+    this.nowDay.setFullYear(tDate.getFullYear() + year);
+    this.nowDay.setMonth(tDate.getMonth() + month);
+    this.nowDay.setDate(tDate.getDate() + date);
   }
-  constructor() { }
+
+  setToDay() {
+    this.nowDay = new Date();
+  }
+
+  getDate() {
+    return this.nowDay;
+  }
+  constructor() { 
+    this.setToDay();
+  }
 
 }
