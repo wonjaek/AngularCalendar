@@ -14,7 +14,8 @@ const CalendarContent_Router: Routes = [
             { path: 'day', component: CalendarDayComponent },
             { path: 'week', component: CalendarWeekComponent },
             { path: 'month', component: CalendarMonthComponent },
-            { path: 'to-do-list', component: CalendarToDoListComponent}
+            { path: 'to-do-list', component: CalendarToDoListComponent},
+            { path : '**', component: CalendarDayComponent }
         ]
     }
 ];
