@@ -24,13 +24,7 @@ export class CalendarService {
     return this.nowDate;
   }
 
-  public updateWeek() : void{
-    this.weekStart = this.getDate().getDate() - this.getDate().getDay();
-    console.log("update:" + this.weekStart);
-  }
-
-  public getWeek(): number[] {
-    // this.updateWeek();
+  public getWeekArr(): number[] {
     this.weekStart = this.getDate().getDate() - this.getDate().getDay();
     let weeks: number[] = [];
     for(let i = this.weekStart; i <= this.weekStart+6; i++) {
@@ -39,5 +33,28 @@ export class CalendarService {
     return weeks;
   }
 
+  public getMonthLastDays(inputDate: Date): number {
+    let monthDay: number[] = [31, 28, 31, 30, 31, 31, 30, 31, 30, 31];
+    if (((inputDate.getFullYear() % 4 == 0) && (inputDate.getFullYear() % 100 != 0)) || (inputDate.getFullYear() % 400 == 0)) {
+      monthDay[1] = 29;
+    } else {
+      monthDay[1] = 28;
+    }
+    return monthDay[inputDate.getMonth()];
+  }
+  
+  public getMonthFirstDay(inputDate: Date): number {
+    let tDate: Date = inputDate;
+    tDate.setDate(1);
+    return tDate.getDay();
+  }
 
+  public getMonthArr(): number[] {
+    let month: number[] = [];
+    let day = this.getMonthLastDays(this.getDate());
+    for(let i = 1; i <= day; i++) {
+      month.push(i);
+    }
+    return month;
+  }
 }
