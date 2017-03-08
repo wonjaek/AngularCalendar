@@ -1,32 +1,31 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { CalendarService } from '../calendar.service';
 
 @Component({
   selector: 'cal-top',
   templateUrl: './calendar-top.component.html',
-  styleUrls: ['./calendar-top.component.css'],
-  providers: [CalendarService]
+  styleUrls: ['./calendar-top.component.css']
 })
 export class CalendarTopComponent implements OnInit {
-  private nowDate : string;
+  active = false;
+  @Output() changeDay = new EventEmitter<boolean>();
 
   constructor(private calendarService: CalendarService) { 
-    this.nowDate = calendarService.getDate().toDateString();
   }
 
-  setToDay() {
+  public setToDay() : void{
     this.calendarService.setToDay();
-    this.nowDate = this.calendarService.getDate().toDateString();
+    this.changeDay.emit(!this.active);
   }
 
-  setNextDay() {
+  public setNextDay() : void{
     this.calendarService.setDate(0, 0, 1);
-    this.nowDate = this.calendarService.getDate().toDateString();
+    this.changeDay.emit(!this.active);
   }
 
-  setPrevDay() {
+  public setPrevDay() : void{
     this.calendarService.setDate(0, 0, -1);
-    this.nowDate = this.calendarService.getDate().toDateString();
+    this.changeDay.emit(!this.active);
   }
 
   

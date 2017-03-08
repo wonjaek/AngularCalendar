@@ -1,20 +1,18 @@
-<table>
-  <tr>
-    <th>Sunday</th>
-    <th>Monday</th>
-    <th>Thuesday</th>
-    <th>Wednesday</th>
-    <th>Thursday</th>
-    <th>Friday</th>
-    <th>Saturday</th>
-  </tr>
-  <tr>
-    <td>1</td>
-    <td>2</td>
-    <td>3</td>
-    <td>4</td>
-    <td>5</td>
-    <td>6</td>
-    <td>7</td>
-  </tr>
+<table class="bordered striped responsive-table">
+  <thead class="center">
+    <tr>
+      <th>SUN</th>
+      <th>MON</th>
+      <th>TUE</th>
+      <th>WED</th>
+      <th>THU</th>
+      <th>FRI</th>
+      <th>SAT</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td *ngFor="let day of weeks">{{day}}</td>
+    </tr>
+  </tbody>
 </table>

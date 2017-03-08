@@ -5,7 +5,7 @@
   <button (click)="setToDay()" id="common_btn" class="grey lighten-3 waves-effect waves-light white btn-flat">Today</button>
   <button (click)="setPrevDay()" id="common_btn" class="grey lighten-3 waves-effect waves-light white btn-flat"><i class="material-icons">keyboard_arrow_left</i></button>
   <button (click)="setNextDay()" id="common_btn" class="grey lighten-3 waves-effect waves-light white btn-flat"><i class="material-icons">keyboard_arrow_right</i></button>
-  <a id="current_day" class="black-text"> {{nowDate}} </a>
+  <a id="current_day" class="black-text"> {{calendarService.getDate().toDateString()}} </a>
 </div>
 
 <div class="col s1 right">

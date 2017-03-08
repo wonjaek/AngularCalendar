@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, AfterContentChecked, OnInit} from '@angular/core';
+import { CalendarService } from '../calendar.service';
 
 @Component({
   selector: 'app-calendar-week',
@@ -6,15 +7,22 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./calendar-week.component.css']
 })
 export class CalendarWeekComponent implements OnInit {
-  date;
-  dayToMs = 86400000;
-  constructor() {
-    this.date = new Date();
+  private weeks: number[] 
+
+  constructor(private calendarService: CalendarService) {
+    this.weeks = this.calendarService.getWeek();
+  }
+
+  ngAfterContentChecked() {
+    console.log("update Week");
+    this.weeks = this.calendarService.getWeek();
   }
 
   ngOnInit() {
-    console.log(this.date);
-    console.log(new Date(this.date-this.dayToMs));
+    console.log(this.calendarService.getWeek());
+    console.log("weekStarDay:" + this.weeks);
+    console.log("today(0~6):" + this.calendarService.getDate().getDay());
+    console.log("todate(1~31):" + this.calendarService.getDate().getDate());
   }
 
 }
