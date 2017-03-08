@@ -30,7 +30,8 @@ export class CalendarService {
   }
 
   public getWeek(): number[] {
-    this.updateWeek();
+    // this.updateWeek();
+    this.weekStart = this.getDate().getDate() - this.getDate().getDay();
     let weeks: number[] = [];
     for(let i = this.weekStart; i <= this.weekStart+6; i++) {
       weeks.push(i);

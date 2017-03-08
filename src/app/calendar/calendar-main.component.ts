@@ -11,17 +11,6 @@ export class CalendarMainComponent implements OnInit {
   constructor(private calendarService: CalendarService) { 
   }
   
-  outputEvent(active: boolean) {
-    if(active) {
-      console.log(active);
-      console.log("event date: " + this.calendarService.getDate());
-      this.calendarService.updateWeek();
-      console.log(this.calendarService.getWeek());
-    }
-  }
-
-
-
   ngOnInit() {
   }
 

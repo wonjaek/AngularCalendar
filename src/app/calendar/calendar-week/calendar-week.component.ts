@@ -16,6 +16,7 @@ export class CalendarWeekComponent implements OnInit {
   ngAfterContentChecked() {
     console.log("update Week");
     this.weeks = this.calendarService.getWeek();
+    console.log(this.calendarService.getWeek());
   }
 
   ngOnInit() {

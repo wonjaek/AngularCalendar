@@ -8,24 +8,20 @@ import { CalendarService } from '../calendar.service';
 })
 export class CalendarTopComponent implements OnInit {
   active = false;
-  @Output() changeDay = new EventEmitter<boolean>();
 
   constructor(private calendarService: CalendarService) { 
   }
 
   public setToDay() : void{
     this.calendarService.setToDay();
-    this.changeDay.emit(!this.active);
   }
 
   public setNextDay() : void{
     this.calendarService.setDate(0, 0, 1);
-    this.changeDay.emit(!this.active);
   }
 
   public setPrevDay() : void{
     this.calendarService.setDate(0, 0, -1);
-    this.changeDay.emit(!this.active);
   }
 
   

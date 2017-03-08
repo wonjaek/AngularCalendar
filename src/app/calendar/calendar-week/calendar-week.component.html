@@ -1,18 +1,22 @@
-<table class="bordered striped responsive-table">
-  <thead class="center">
-    <tr>
-      <th>SUN</th>
-      <th>MON</th>
-      <th>TUE</th>
-      <th>WED</th>
-      <th>THU</th>
-      <th>FRI</th>
-      <th>SAT</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td *ngFor="let day of weeks">{{day}}</td>
-    </tr>
-  </tbody>
-</table>
+<br>
+<br>
+<div class="row">
+  <table class="bordered striped calendar">
+    <thead>
+      <tr>
+        <th>SUN</th>
+        <th>MON</th>
+        <th>TUE</th>
+        <th>WED</th>
+        <th>THU</th>
+        <th>FRI</th>
+        <th>SAT</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td *ngFor="let day of weeks"><b>{{day}}</b></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

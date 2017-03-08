@@ -1,1 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
+.calendar {
+    table-layout: fixed;
+}
+th {
+    text-align: center;
+    border: 1px solid #d0d0d0;
+}
+td {
+    border: 1px solid #d0d0d0;
+}
