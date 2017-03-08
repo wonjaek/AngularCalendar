@@ -18,6 +18,12 @@ export class CalendarService {
   getDate() {
     return this.nowDay;
   }
+
+  getWeek() {
+    var weeks = [];
+    weeks.push();
+    
+  }
   constructor() { 
     this.setToDay();
   }

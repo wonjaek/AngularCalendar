@@ -6,10 +6,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./calendar-week.component.css']
 })
 export class CalendarWeekComponent implements OnInit {
-
-  constructor() { }
+  date;
+  dayToMs = 86400000;
+  constructor() {
+    this.date = new Date();
+  }
 
   ngOnInit() {
+    console.log(this.date);
+    console.log(new Date(this.date-this.dayToMs));
   }
 
 }
