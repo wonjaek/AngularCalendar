@@ -15,15 +15,21 @@ export class CalendarMonthComponent implements OnInit {
   constructor(private calendarService: CalendarService) {
     this.firstDay = calendarService.getMonthFirstDay(calendarService.getDate());
     this.months = calendarService.getMonthArr();
-    this.numOfWeek = Math.floor(this.months.length / 7);
+    this.numOfWeek = Math.round((this.months.length+this.firstDay) / 7);
   }
 
-  public createRange() : number[] {
+  public createRange(num: number) : number[] {
     var items: number[] = [];
-    for(var i = 1; i <= this.numOfWeek; i++) {
+    for(var i = 1; i <= num; i++) {
       items.push(i);
     }
     return items;
+  }
+
+  ngAfterContentChecked() {
+    this.firstDay = this.calendarService.getMonthFirstDay(this.calendarService.getDate());
+    this.months = this.calendarService.getMonthArr();
+    this.numOfWeek = Math.round((this.months.length+this.firstDay) / 7);
   }
 
   ngOnInit() {

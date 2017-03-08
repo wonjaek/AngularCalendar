@@ -23,7 +23,6 @@ export class CalendarTopComponent implements OnInit {
   public setPrevDay() : void{
     this.calendarService.setDate(0, 0, -1);
   }
-
   
   ngOnInit() {
   }
