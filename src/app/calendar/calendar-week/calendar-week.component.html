@@ -15,7 +15,9 @@
     </thead>
     <tbody>
       <tr>
-        <td *ngFor="let day of weeks"><b>{{day}}</b></td>
+         <td highlighttoday [inputDay]="isToday(day)" 
+           *ngFor="let day of weeks"
+         ><b>{{day}}</b></td>
       </tr>
     </tbody>
   </table>

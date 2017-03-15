@@ -7,10 +7,20 @@ import { CalendarService } from '../calendar.service';
   styleUrls: ['./calendar-week.component.css']
 })
 export class CalendarWeekComponent implements OnInit {
-  private weeks: number[] 
+  private weeks: number[];
+  private nowDate: Date;
 
   constructor(private calendarService: CalendarService) {
     this.weeks = this.calendarService.getWeekArr();
+    this.nowDate = this.calendarService.getNowDate();
+  }
+
+  public isToday(inputDate: number): boolean{
+    if(this.nowDate.getDate() == inputDate) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   ngAfterContentChecked() {

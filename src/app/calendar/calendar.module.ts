@@ -10,6 +10,7 @@ import { CalendarWeekComponent } from './calendar-week/calendar-week.component';
 import { CalendarMonthComponent } from './calendar-month/calendar-month.component';
 import { CalendarRoutingModule } from './calendar.routing';
 import { CalendarToDoListComponent } from './calendar-to-do-list/calendar-to-do-list.component';
+import { HighlightTodayDirective } from './directives/highlight-today.directive';
 
 @NgModule ({
     imports: [CommonModule, 
@@ -23,7 +24,7 @@ import { CalendarToDoListComponent } from './calendar-to-do-list/calendar-to-do-
         CalendarContentComponent, 
         CalendarDayComponent, 
         CalendarWeekComponent, 
-        CalendarMonthComponent, CalendarToDoListComponent
+        CalendarMonthComponent, CalendarToDoListComponent, HighlightTodayDirective
     ],
     exports: [CalendarMainComponent]
 })

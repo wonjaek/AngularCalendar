@@ -99,6 +99,8 @@ export class CalendarService {
     }
     return monthDay[inputDate.getMonth()];
   }
+
+  /* get the last day of next month */
   public getNextMonthLastDay(inputDate: Date): number {
     let tempDate: Date = new Date();
     tempDate.setDate(inputDate.getDate());
@@ -106,6 +108,8 @@ export class CalendarService {
 
     return this.getMonthLastDay(tempDate);
   }
+
+  /* get the last day of prev month */
   public getPrevMonthLastDay(inputDate: Date): number {
     let tempDate: Date = new Date();
     tempDate.setDate(inputDate.getDate());
@@ -113,6 +117,7 @@ export class CalendarService {
 
     return this.getMonthLastDay(tempDate);
   }
+
   public getMonthFirstDay(inputDate: Date): number {
     let tDate: Date = inputDate;
     tDate.setDate(1);
