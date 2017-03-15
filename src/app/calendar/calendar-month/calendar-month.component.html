@@ -14,9 +14,9 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let item of createRange(numOfWeek); let num = index" >
-        <td [ngClass]="isToday(day)"
-        *ngFor="let day of weeks[num]"><b>{{day}}</b></td>
+      <tr *ngFor="let item of createRange(numOfWeek); let i=index" >
+        <td [ngClass]="isToday(weeks[i][j].month, weeks[i][j].day)"
+        *ngFor="let item1 of createRange(7); let j=index"><b>{{weeks[i][j].day}}</b></td>
       </tr>
     </tbody>
   </table>

@@ -37,11 +37,14 @@ export class CalendarService {
   }
 
   /* get array of weekday */
-  public getWeekArr(inputDate: Date): number[] {
+  public getWeekArr(inputDate: Date): Object {
+    let weeks: Object = new Object(); 
     let tempDate = new Date(inputDate);
     let weekStart = this.getWeekFirstDay(tempDate);
     let lastDayOfMonth = this.getMonthLastDay(tempDate);
-    let weeks: number[] = [];
+    let currentMonth = tempDate.getMonth() + 1;
+    console.log(tempDate);
+    console.log(currentMonth);
 
     if((weekStart+6) > lastDayOfMonth && this.getWeekState() != 0) {
       this.setWeekState(2);
@@ -50,26 +53,51 @@ export class CalendarService {
     if(this.getWeekState() == 0) {
       let count = 0;
       for (let i = weekStart; i <= this.getPrevMonthLastDay(tempDate); i++) {
-        weeks.push(i);
+        let dayInfo: Object = new Object();
+        dayInfo['month'] = currentMonth - 1;
+        dayInfo['day'] = i
+        weeks[count] = dayInfo;
         count ++;
       }
-      for (let i = 1; i <= (7-count); i++) {
-        weeks.push(i);
+      console.log(weeks[0] );
+      console.log(weeks[1] );
+      console.log(weeks[2] );
+      let end = (7-count);
+      for (let i = 1; i <= end; i++) {
+        let dayInfo: Object = new Object();
+        dayInfo['month'] = currentMonth;
+        dayInfo['day'] = i
+        weeks[count] = dayInfo;
+        count ++;
       }
+      console.log(weeks);
       this.setWeekState(1);
     } else if (this.getWeekState() == 1) {
+      let count = 0;
       for (let i = weekStart; i <= weekStart + 6; i++) {
-        weeks.push(i);
+        let dayInfo: Object = new Object();
+        dayInfo['month'] = currentMonth;
+        dayInfo['day'] = i;
+        weeks[count] = dayInfo;
+        count++;
       }
       this.setWeekState(1);
     } else {
       let count = 0;
       for (let i = weekStart; i <= lastDayOfMonth; i++) {
-        weeks.push(i);
+        let dayInfo: Object = new Object();
+        dayInfo['month'] = currentMonth;
+        dayInfo['day'] = i;
+        weeks[count] = dayInfo;
         count++;
       }
-      for (let i = 1; i <= (7-count); i++) {
-        weeks.push(i);
+      let end = (7-count);
+      for (let i = 1; i <= end; i++) {
+        let dayInfo: Object = new Object();
+        dayInfo['month'] = currentMonth + 1;
+        dayInfo['day'] = i;
+        weeks[count] = dayInfo;
+        count++;
       }
       this.setWeekState(1);
     }

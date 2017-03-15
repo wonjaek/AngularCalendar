@@ -22,41 +22,39 @@ export class CalendarMonthComponent implements OnInit {
     this.nowDate = calendarService.getNowDate();
   }
 
+  public createRange(number) {
+    var items: number[] = [];
+    for (var i = 0; i < number; i++) {
+      items.push(i);
+    }
+    return items;
+  }
+
   public setWeeks (inputDate: Date, inputRange: number) : Object {
     let weeks: Object = new Object(); 
     let seed: number = 1;
     let tempDate: Date = new Date(inputDate);
     console.log("test");
     for(let i = 0; i < inputRange; i++) {
-      console.log("r:" + inputRange + "i:" + i);
       seed = 1 + (7 * i);
       if (seed > this.calendarService.getMonthLastDay(tempDate)) {
         break;
       }
-      console.log("seed:" + seed);
       tempDate.setDate(seed);
-      console.log("te:" + tempDate);
       weeks[i] = (this.calendarService.getWeekArr(tempDate));
     }
     console.log(weeks);
     return weeks;
   }
 
-  public isToday(inputDate: number): string{
-    if(this.nowDate.getDate() == inputDate) {
+  public isToday(month: number, date: number): string{
+    if(this.nowDate.getDate() == date && (this.nowDate.getMonth()+1) == month) {
       return "indigo lighten-3";
     } else {
       return "blue-grey lighten-5";
     }
   }
 
-  public createRange(num: number) : number[] {
-    var items: number[] = [];
-    for(var i = 1; i <= num; i++) {
-      items.push(i);
-    }
-    return items;
-  }
 
   ngAfterContentChecked() {
     this.firstDay = this.calendarService.getMonthFirstDay(this.calendarService.getNowDate());
@@ -66,9 +64,9 @@ export class CalendarMonthComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.firstDay);
-    console.log(this.months);
-    console.log(this.numOfWeek);
+    // console.log(this.firstDay);
+    // console.log(this.months);
+    // console.log(this.numOfWeek);
   }
 
 }
