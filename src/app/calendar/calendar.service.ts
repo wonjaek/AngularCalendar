@@ -39,7 +39,12 @@ export class CalendarService {
   /* get array of weekday */
   public getWeekArr(): number[] {
     let weekStart = this.getWeekFirstDay(this.getNowDate());
+    let lastDayOfMonth = this.getMonthLastDay(this.getNowDate());
     let weeks: number[] = [];
+
+    if((weekStart+6) > lastDayOfMonth && this.getWeekState() != 0) {
+      this.setWeekState(2);
+    } 
 
     if(this.getWeekState() == 0) {
       let count = 0;
@@ -50,12 +55,22 @@ export class CalendarService {
       for (let i = 1; i <= (7-count); i++) {
         weeks.push(i);
       }
+      this.setWeekState(1);
     } else if (this.getWeekState() == 1) {
       for (let i = weekStart; i <= weekStart + 6; i++) {
         weeks.push(i);
       }
+      this.setWeekState(1);
     } else {
-
+      let count = 0;
+      for (let i = weekStart; i <= lastDayOfMonth; i++) {
+        weeks.push(i);
+        count++;
+      }
+      for (let i = 1; i <= (7-count); i++) {
+        weeks.push(i);
+      }
+      this.setWeekState(1);
     }
     return weeks;
   }
