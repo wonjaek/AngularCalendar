@@ -11,8 +11,8 @@ export class CalendarWeekComponent implements OnInit {
   private nowDate: Date;
 
   constructor(private calendarService: CalendarService) {
-    this.weeks = this.calendarService.getWeekArr();
     this.nowDate = this.calendarService.getNowDate();
+    this.weeks = this.calendarService.getWeekArr(this.nowDate);
   }
 
   public isToday(inputDate: number): string{
@@ -25,7 +25,7 @@ export class CalendarWeekComponent implements OnInit {
 
   ngAfterContentChecked() {
     console.log("update Week");
-    this.weeks = this.calendarService.getWeekArr();
+    this.weeks = this.calendarService.getWeekArr(this.nowDate);
     this.nowDate = this.calendarService.getNowDate();
   }
 

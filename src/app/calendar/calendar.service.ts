@@ -37,9 +37,10 @@ export class CalendarService {
   }
 
   /* get array of weekday */
-  public getWeekArr(): number[] {
-    let weekStart = this.getWeekFirstDay(this.getNowDate());
-    let lastDayOfMonth = this.getMonthLastDay(this.getNowDate());
+  public getWeekArr(inputDate: Date): number[] {
+    let tempDate = new Date(inputDate);
+    let weekStart = this.getWeekFirstDay(tempDate);
+    let lastDayOfMonth = this.getMonthLastDay(tempDate);
     let weeks: number[] = [];
 
     if((weekStart+6) > lastDayOfMonth && this.getWeekState() != 0) {
@@ -48,7 +49,7 @@ export class CalendarService {
 
     if(this.getWeekState() == 0) {
       let count = 0;
-      for (let i = weekStart; i <= this.getPrevMonthLastDay(this.getNowDate()); i++) {
+      for (let i = weekStart; i <= this.getPrevMonthLastDay(tempDate); i++) {
         weeks.push(i);
         count ++;
       }
@@ -102,8 +103,7 @@ export class CalendarService {
 
   /* get the last day of next month */
   public getNextMonthLastDay(inputDate: Date): number {
-    let tempDate: Date = new Date();
-    tempDate.setDate(inputDate.getDate());
+    let tempDate: Date = new Date(inputDate);
     tempDate.setMonth(inputDate.getMonth() + 1);
 
     return this.getMonthLastDay(tempDate);
@@ -111,17 +111,16 @@ export class CalendarService {
 
   /* get the last day of prev month */
   public getPrevMonthLastDay(inputDate: Date): number {
-    let tempDate: Date = new Date();
-    tempDate.setDate(inputDate.getDate());
+    let tempDate: Date = new Date(inputDate);
     tempDate.setMonth(inputDate.getMonth() - 1);
 
     return this.getMonthLastDay(tempDate);
   }
 
   public getMonthFirstDay(inputDate: Date): number {
-    let tDate: Date = inputDate;
-    tDate.setDate(1);
-    return tDate.getDay();
+    let tempDate: Date = new Date(inputDate);
+    tempDate.setDate(1);
+    return tempDate.getDay();
   }
 
   public getMonthArr(): number[] {
