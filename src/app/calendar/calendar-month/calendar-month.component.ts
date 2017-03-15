@@ -13,7 +13,7 @@ export class CalendarMonthComponent implements OnInit {
   private numOfWeek: number;
 
   constructor(private calendarService: CalendarService) {
-    this.firstDay = calendarService.getMonthFirstDay(calendarService.getDate());
+    this.firstDay = calendarService.getMonthFirstDay(calendarService.getNowDate());
     this.months = calendarService.getMonthArr();
     this.numOfWeek = Math.round((this.months.length+this.firstDay) / 7);
   }
@@ -27,7 +27,7 @@ export class CalendarMonthComponent implements OnInit {
   }
 
   ngAfterContentChecked() {
-    this.firstDay = this.calendarService.getMonthFirstDay(this.calendarService.getDate());
+    this.firstDay = this.calendarService.getMonthFirstDay(this.calendarService.getNowDate());
     this.months = this.calendarService.getMonthArr();
     this.numOfWeek = Math.round((this.months.length+this.firstDay) / 7);
   }

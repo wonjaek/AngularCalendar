@@ -16,14 +16,12 @@ export class CalendarWeekComponent implements OnInit {
   ngAfterContentChecked() {
     console.log("update Week");
     this.weeks = this.calendarService.getWeekArr();
-    console.log(this.calendarService.getWeekArr());
   }
 
   ngOnInit() {
-    console.log(this.calendarService.getWeekArr());
-    console.log("weekStarDay:" + this.weeks);
-    console.log("today(0~6):" + this.calendarService.getDate().getDay());
-    console.log("todate(1~31):" + this.calendarService.getDate().getDate());
+    console.log("weekStartDay:" + this.weeks);
+    console.log("today(0~6):" + this.calendarService.getNowDate().getDay());
+    console.log("todate(1~31):" + this.calendarService.getNowDate().getDate());
   }
 
 }

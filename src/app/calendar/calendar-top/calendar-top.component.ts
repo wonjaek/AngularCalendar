@@ -13,7 +13,7 @@ export class CalendarTopComponent implements OnInit {
   }
 
   public setToDay() : void{
-    this.calendarService.setToDay();
+    this.calendarService.setNowDate();
   }
 
   public setNextDay() : void{
