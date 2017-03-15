@@ -15,7 +15,7 @@
     </thead>
     <tbody>
       <tr>
-         <td highlighttoday [inputDay]="isToday(day)" 
+         <td [ngClass]="isToday(day)" 
            *ngFor="let day of weeks"
          ><b>{{day}}</b></td>
       </tr>

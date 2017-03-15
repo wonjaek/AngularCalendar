@@ -15,7 +15,9 @@ export class HighlightTodayDirective {
   @Input() set inputDay(isToday: boolean) {
     this._isToday = isToday;
     if(this._isToday == true) {
-      this.el.style.backgroundColor='blue';
+      // this.el. ='#B9FFFF';
+    } else {
+      this.el.style.backgroundColor='#d0d0d0';
     }
   }
 }

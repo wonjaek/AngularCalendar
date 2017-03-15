@@ -15,17 +15,18 @@ export class CalendarWeekComponent implements OnInit {
     this.nowDate = this.calendarService.getNowDate();
   }
 
-  public isToday(inputDate: number): boolean{
+  public isToday(inputDate: number): string{
     if(this.nowDate.getDate() == inputDate) {
-      return true;
+      return "indigo lighten-3";
     } else {
-      return false;
+      return "blue-grey lighten-5";
     }
   }
 
   ngAfterContentChecked() {
     console.log("update Week");
     this.weeks = this.calendarService.getWeekArr();
+    this.nowDate = this.calendarService.getNowDate();
   }
 
   ngOnInit() {
