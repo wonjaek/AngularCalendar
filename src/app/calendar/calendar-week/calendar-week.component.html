@@ -3,6 +3,7 @@
   <table class="bordered striped calendar">
     <thead>
       <tr>
+        <th></th>
         <th>SUN</th>
         <th>MON</th>
         <th>TUE</th>
@@ -14,8 +15,19 @@
     </thead>
     <tbody>
       <tr>
-        <td [ngClass]="calendarService.dateColor(weeks[i].month, weeks[i].day)" *ngFor="let item of createRange(7); let i=index">
+        <td></td>
+        <td [ngClass]="calendarService.dateColor(weeks[i].month, weeks[i].day)" 
+        *ngFor="let item of createRange(7); let i=index">
           <b>{{weeks[i].day}}</b>
+        </td>
+      </tr>
+    </tbody>
+
+    <tbody>
+      <tr *ngFor="let item of createRange(24); let i=index">
+        <td>{{i}}:00</td>
+        <td *ngFor="let item of createRange(7); let i=index">
+          <b></b>
         </td>
       </tr>
     </tbody>
