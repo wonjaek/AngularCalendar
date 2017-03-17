@@ -26,10 +26,6 @@ export class CalendarMonthComponent implements OnInit {
     return items;
   }
 
-  public getNowMonth() {
-    return (this.nowDate.getMonth()+1);
-  }
-
   public setWeeks (inputDate: Date, inputRange: number) : Object {
     let weeks: Object = new Object(); 
     let seed: number = 1;

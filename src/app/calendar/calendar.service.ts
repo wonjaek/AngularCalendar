@@ -29,7 +29,11 @@ export class CalendarService {
     return this.nowDate;
   }
 
-  public setWeekState(weekState: number): void {
+  public getNowMonth() {
+    return (this.nowDate.getMonth() + 1);
+  }
+
+ public setWeekState(weekState: number): void {
     this.weekState = weekState;
   }
   public getWeekState() : number {
