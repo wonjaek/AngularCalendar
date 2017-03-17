@@ -15,9 +15,7 @@
     </thead>
     <tbody>
       <tr>
-        <td [ngClass]="isToday(weeks[i].month, weeks[i].day)" *ngFor="let item of createRange(7); let i=index">
-          <b>{{weeks[i].month}}</b>
-          <br>
+        <td [ngClass]="dateColor(weeks[i].month, weeks[i].day)" *ngFor="let item of createRange(7); let i=index">
           <b>{{weeks[i].day}}</b>
         </td>
       </tr>

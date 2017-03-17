@@ -43,8 +43,6 @@ export class CalendarService {
     let weekStart = this.getWeekFirstDay(tempDate);
     let lastDayOfMonth = this.getMonthLastDay(tempDate);
     let currentMonth = tempDate.getMonth() + 1;
-    console.log(tempDate);
-    console.log(currentMonth);
 
     if((weekStart+6) > lastDayOfMonth && this.getWeekState() != 0) {
       this.setWeekState(2);
@@ -59,9 +57,7 @@ export class CalendarService {
         weeks[count] = dayInfo;
         count ++;
       }
-      console.log(weeks[0] );
-      console.log(weeks[1] );
-      console.log(weeks[2] );
+
       let end = (7-count);
       for (let i = 1; i <= end; i++) {
         let dayInfo: Object = new Object();
@@ -70,7 +66,6 @@ export class CalendarService {
         weeks[count] = dayInfo;
         count ++;
       }
-      console.log(weeks);
       this.setWeekState(1);
     } else if (this.getWeekState() == 1) {
       let count = 0;
@@ -112,7 +107,6 @@ export class CalendarService {
       return firstDay;
     } else {
       firstDay = this.getPrevMonthLastDay(inputDate) - inputDate.getDay() + inputDate.getDate();
-      console.log(firstDay);
       this.setWeekState(0);
       return firstDay;
     }
@@ -149,6 +143,21 @@ export class CalendarService {
     let tempDate: Date = new Date(inputDate);
     tempDate.setDate(1);
     return tempDate.getDay();
+  }
+
+  public getNumOfWeek(inputDate: Date): number {
+    let tempDate: Date = new Date(inputDate);
+    let tempDay: number;
+    let tempLastDay: number;
+    tempDate.setDate(1);
+    tempDay = tempDate.getDay();
+    tempLastDay = this.getMonthLastDay(tempDate);
+
+    if(((tempLastDay==31)&&(tempDay>=5)) || ((tempLastDay==30)&&(tempDay==6))) {
+      return 6;
+    } else {
+      return 5;
+    }
   }
 
   public getMonthArr(): number[] {

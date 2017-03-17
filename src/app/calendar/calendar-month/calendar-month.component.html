@@ -1,6 +1,5 @@
-<br>
-<br>
 <div class="row">
+  <h4>{{getNowMonth()}}월</h4>
   <table class="bordered striped calendar">
     <thead>
       <tr>
@@ -15,8 +14,10 @@
     </thead>
     <tbody>
       <tr *ngFor="let item of createRange(numOfWeek); let i=index" >
-        <td [ngClass]="isToday(weeks[i][j].month, weeks[i][j].day)"
-        *ngFor="let item1 of createRange(7); let j=index"><b>{{weeks[i][j].day}}</b></td>
+        <td [ngClass]="dateColor(weeks[i][j].month, weeks[i][j].day)"
+        *ngFor="let item1 of createRange(7); let j=index">
+        <b>{{weeks[i][j].day}}</b>
+        </td>
       </tr>
     </tbody>
   </table>

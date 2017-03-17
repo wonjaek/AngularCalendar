@@ -16,13 +16,19 @@ export class CalendarWeekComponent implements OnInit {
     console.log(this.weeks);
   }
 
-  public isToday(month: number, date: number): string{
+  public dateColor(month: number, date: number): string{
+    let color: string;
     if(this.nowDate.getDate() == date && (this.nowDate.getMonth()+1) == month) {
-      return "indigo lighten-3";
+      color = "indigo lighten-3";
     } else {
-      return "blue-grey lighten-5";
+      color = "blue-grey lighten-5";
+    } 
+    if (this.nowDate.getMonth()== month || (this.nowDate.getMonth()+2) == month) {
+      color = "blue-grey lighten-5 grey-text text-lighten-2";
     }
+    return color;
   }
+
 
   public createRange(number) {
     var items: number[] = [];
@@ -34,14 +40,11 @@ export class CalendarWeekComponent implements OnInit {
 
   ngAfterContentChecked() {
     console.log("update Week");
-    this.weeks = this.calendarService.getWeekArr(this.nowDate);
     this.nowDate = this.calendarService.getNowDate();
+    this.weeks = this.calendarService.getWeekArr(this.nowDate);
   }
 
   ngOnInit() {
-    // console.log("weekStartDay:" + this.weeks[0]);
-    // console.log("today(0~6):" + this.calendarService.getNowDate().getDay());
-    // console.log("todate(1~31):" + this.calendarService.getNowDate().getDate());
   }
 
 }

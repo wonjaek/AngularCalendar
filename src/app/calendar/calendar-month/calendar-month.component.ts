@@ -7,17 +7,13 @@ import { CalendarService } from '../calendar.service'
   styleUrls: ['./calendar-month.component.css']
 })
 export class CalendarMonthComponent implements OnInit {
-  private months: number[];
-  private firstDay: number;
-  private monthDate: number;
-  private numOfWeek: number;
   private nowDate: Date;
-  private weeks: Object = new Object(); 
+  private numOfWeek: number;
+  private weeks;
 
   constructor(private calendarService: CalendarService) {
-    this.firstDay = calendarService.getMonthFirstDay(calendarService.getNowDate());
-    this.months = calendarService.getMonthArr();
-    this.numOfWeek = Math.round((this.months.length+this.firstDay) / 7);
+    this.nowDate = calendarService.getNowDate();
+    this.numOfWeek = calendarService.getNumOfWeek(this.nowDate);
     this.weeks = this.setWeeks(calendarService.getNowDate(), this.numOfWeek);
     this.nowDate = calendarService.getNowDate();
   }
@@ -30,43 +26,46 @@ export class CalendarMonthComponent implements OnInit {
     return items;
   }
 
+  public getNowMonth() {
+    return (this.nowDate.getMonth()+1);
+  }
+
   public setWeeks (inputDate: Date, inputRange: number) : Object {
     let weeks: Object = new Object(); 
     let seed: number = 1;
     let tempDate: Date = new Date(inputDate);
-    console.log("test");
     for(let i = 0; i < inputRange; i++) {
       seed = 1 + (7 * i);
+      tempDate.setDate(seed);
+      weeks[i] = (this.calendarService.getWeekArr(tempDate));
       if (seed > this.calendarService.getMonthLastDay(tempDate)) {
         break;
       }
-      tempDate.setDate(seed);
-      weeks[i] = (this.calendarService.getWeekArr(tempDate));
     }
-    console.log(weeks);
     return weeks;
   }
 
-  public isToday(month: number, date: number): string{
+  public dateColor(month: number, date: number): string{
+    let color: string;
     if(this.nowDate.getDate() == date && (this.nowDate.getMonth()+1) == month) {
-      return "indigo lighten-3";
+      color = "indigo lighten-3";
     } else {
-      return "blue-grey lighten-5";
+      color = "blue-grey lighten-5";
+    } 
+    if (this.nowDate.getMonth()== month || (this.nowDate.getMonth()+2) == month) {
+      color = "blue-grey lighten-5 grey-text text-lighten-2";
     }
+    return color;
   }
 
 
   ngAfterContentChecked() {
-    this.firstDay = this.calendarService.getMonthFirstDay(this.calendarService.getNowDate());
-    this.months = this.calendarService.getMonthArr();
-    this.numOfWeek = Math.round((this.months.length+this.firstDay) / 7);
+    this.nowDate = this.calendarService.getNowDate();
+    this.numOfWeek = this.calendarService.getNumOfWeek(this.nowDate);
     this.weeks = this.setWeeks(this.calendarService.getNowDate(), this.numOfWeek);
   }
 
   ngOnInit() {
-    // console.log(this.firstDay);
-    // console.log(this.months);
-    // console.log(this.numOfWeek);
   }
 
 }
