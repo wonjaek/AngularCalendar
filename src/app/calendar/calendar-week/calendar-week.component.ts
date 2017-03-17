@@ -16,20 +16,6 @@ export class CalendarWeekComponent implements OnInit {
     console.log(this.weeks);
   }
 
-  public dateColor(month: number, date: number): string{
-    let color: string;
-    if(this.nowDate.getDate() == date && (this.nowDate.getMonth()+1) == month) {
-      color = "indigo lighten-3";
-    } else {
-      color = "blue-grey lighten-5";
-    } 
-    if (this.nowDate.getMonth()== month || (this.nowDate.getMonth()+2) == month) {
-      color = "blue-grey lighten-5 grey-text text-lighten-2";
-    }
-    return color;
-  }
-
-
   public createRange(number) {
     var items: number[] = [];
     for (var i = 0; i < number; i++) {

@@ -14,7 +14,7 @@
     </thead>
     <tbody>
       <tr>
-        <td [ngClass]="dateColor(weeks[i].month, weeks[i].day)" *ngFor="let item of createRange(7); let i=index">
+        <td [ngClass]="calendarService.dateColor(weeks[i].month, weeks[i].day)" *ngFor="let item of createRange(7); let i=index">
           <b>{{weeks[i].day}}</b>
         </td>
       </tr>

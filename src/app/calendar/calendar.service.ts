@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class CalendarService {
   private nowDate : Date;
+  private numOfWeek: number;
 
   // first week or last week in this month
   // 0: first week, 1: common week, 2: last week
@@ -36,8 +37,25 @@ export class CalendarService {
  public setWeekState(weekState: number): void {
     this.weekState = weekState;
   }
+
   public getWeekState() : number {
     return this.weekState;
+  }
+
+  public getMonthCalendar(inputDate: Date) : Object {
+    let weeks: Object = new Object(); 
+    let seed: number = 1;
+    let tempDate: Date = new Date(inputDate);
+    let range = this.getNumOfWeek(inputDate);
+    for(let i = 0; i < range; i++) {
+      seed = 1 + (7 * i);
+      tempDate.setDate(seed);
+      weeks[i] = (this.getWeekArr(tempDate));
+      if (seed > this.getMonthLastDay(tempDate)) {
+        break;
+      }
+    }
+    return weeks;
   }
 
   /* get array of weekday */
@@ -143,12 +161,6 @@ export class CalendarService {
     return this.getMonthLastDay(tempDate);
   }
 
-  public getMonthFirstDay(inputDate: Date): number {
-    let tempDate: Date = new Date(inputDate);
-    tempDate.setDate(1);
-    return tempDate.getDay();
-  }
-
   public getNumOfWeek(inputDate: Date): number {
     let tempDate: Date = new Date(inputDate);
     let tempDay: number;
@@ -164,12 +176,19 @@ export class CalendarService {
     }
   }
 
-  public getMonthArr(): number[] {
-    let month: number[] = [];
-    let day = this.getMonthLastDay(this.getNowDate());
-    for(let i = 1; i <= day; i++) {
-      month.push(i);
+
+  public dateColor(month: number, date: number): string {
+    let color: string;
+    if (this.nowDate.getDate() == date && (this.nowDate.getMonth() + 1) == month) {
+      color = "indigo lighten-3";
+    } else {
+      color = "blue-grey lighten-5";
     }
-    return month;
+    if (this.nowDate.getMonth() == month || (this.nowDate.getMonth() + 2) == month) {
+      color = "blue-grey lighten-5 grey-text text-lighten-2";
+    }
+    return color;
   }
+
 }
+
