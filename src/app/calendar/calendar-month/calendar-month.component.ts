@@ -14,7 +14,7 @@ export class CalendarMonthComponent implements OnInit {
   constructor(private calendarService: CalendarService) {
     this.nowDate = calendarService.getNowDate();
     this.weeks = calendarService.getMonthCalendar(this.nowDate);
-    this.nowDate = calendarService.getNowDate();
+    this.numOfWeek = this.calendarService.getNumOfWeek(this.nowDate);
     calendarService.setCalendarType(CalendarService.getCalendarMonthType());
   }
 

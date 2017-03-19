@@ -63,7 +63,7 @@ export class CalendarService {
       case CalendarType.Day: 
         this.setDate(0, 0, -1); break;
       case CalendarType.Week: 
-        this.setDate(0, 0, -7);break;
+        this.setDate(0, 0, -7); break;
       case CalendarType.Month: 
         this.setDate(0, 0, this.currentMonthDays(this.nowDate) * (-1)); break;
     }
@@ -74,7 +74,7 @@ export class CalendarService {
       case CalendarType.Day: 
         this.setDate(0, 0, 1); break;
       case CalendarType.Week: 
-        this.setDate(0, 0, 7);break;
+        this.setDate(0, 0, 7); break;
       case CalendarType.Month: 
         this.setDate(0, 0, this.currentMonthDays(this.nowDate)); break;
     }
@@ -240,10 +240,10 @@ export class CalendarService {
     if (this.nowDate.getDate() == date && (this.nowDate.getMonth() + 1) == month) {
       color = "indigo lighten-3";
     } else {
-      color = "blue-grey lighten-5";
+      color = "";
     }
     if (this.nowDate.getMonth() == month || (this.nowDate.getMonth() + 2) == month) {
-      color = "blue-grey lighten-5 grey-text text-lighten-2";
+      color = "grey-text text-lighten-2";
     }
     return color;
   }
