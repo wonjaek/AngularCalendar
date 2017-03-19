@@ -17,11 +17,11 @@ export class CalendarTopComponent implements OnInit {
   }
 
   public setNextDay() : void{
-    this.calendarService.setDate(0, 0, 1);
+    this.calendarService.setAddDate(0, 0, 1);
   }
 
   public setPrevDay() : void{
-    this.calendarService.setDate(0, 0, -1);
+    this.calendarService.setAddDate(0, 0, -1);
   }
 
 /**

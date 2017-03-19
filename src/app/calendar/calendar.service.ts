@@ -30,7 +30,13 @@ export class CalendarService {
     return CalendarType.Week;
   }
 
-  public setDate(year, month, date): void {
+  public setDate(year: number, month : number, date:number) : void
+  {
+    this.nowDate.setFullYear(year);
+    this.nowDate.setMonth(month);
+    this.nowDate.setDate(date);
+  }
+  public setAddDate(year, month, date): void {
     let tDate: Date = this.nowDate;
     this.nowDate.setFullYear(tDate.getFullYear() + year);
     this.nowDate.setMonth(tDate.getMonth() + month);
@@ -61,22 +67,22 @@ export class CalendarService {
   {
     switch(this.calendarType) {
       case CalendarType.Day: 
-        this.setDate(0, 0, -1); break;
+        this.setAddDate(0, 0, -1); break;
       case CalendarType.Week: 
-        this.setDate(0, 0, -7); break;
+        this.setAddDate(0, 0, -7); break;
       case CalendarType.Month: 
-        this.setDate(0, 0, this.currentMonthDays(this.nowDate) * (-1)); break;
+        this.setAddDate(0, -1, 0); break;
     }
   }
   public setNext() : void
   {
     switch(this.calendarType) {
       case CalendarType.Day: 
-        this.setDate(0, 0, 1); break;
+        this.setAddDate(0, 0, 1); break;
       case CalendarType.Week: 
-        this.setDate(0, 0, 7); break;
+        this.setAddDate(0, 0, 7); break;
       case CalendarType.Month: 
-        this.setDate(0, 0, this.currentMonthDays(this.nowDate)); break;
+        this.setAddDate(0, 1, 0); break;
     }
   }
 //caution!
@@ -101,22 +107,35 @@ export class CalendarService {
   }
 
   public getMonthCalendar(inputDate: Date) : Object {
-    let weeks: Object = new Object(); 
+    let weeks = []; 
     let seed: number = 1;
     let tempDate: Date = new Date(inputDate);
     let range = this.getNumOfWeek(inputDate);
+
+    tempDate.setDate(1);
+    tempDate.setDate( tempDate.getDate() - tempDate.getDay() );
+    
     for(let i = 0; i < range; i++) {
-      seed = 1 + (7 * i);
-      tempDate.setDate(seed);
-      weeks[i] = (this.getWeekArr(tempDate));
-      if (seed > this.getMonthLastDay(tempDate)) {
-        break;
+      let week = []
+      for(let j = 0; j < 7; j++) {
+        let dayInfo: Object = new Object();
+
+        dayInfo['day'] = tempDate.getDate();
+        dayInfo['month'] = tempDate.getMonth();
+        dayInfo['year'] = tempDate.getFullYear();
+        tempDate.setDate(tempDate.getDate() + 1);
+        week.push(dayInfo);
       }
+      weeks.push(week);
     }
+    //console.log(weeks);
     return weeks;
+
   }
 
+  
   /* get array of weekday */
+  //Deprecated by Wonjae Kim
   public getWeekArr(inputDate: Date): Object {
     let weeks: Object = new Object(); 
     let tempDate = new Date(inputDate);
@@ -235,14 +254,18 @@ export class CalendarService {
   }
 
 
-  public dateColor(month: number, date: number): string {
+  public dateColor(year: number, month: number, date: number): string {
     let color: string;
-    if (this.nowDate.getDate() == date && (this.nowDate.getMonth() + 1) == month) {
+    let curDate = this.nowDate;
+
+    if ( curDate.getDate() == date && 
+          curDate.getMonth() == month &&
+          curDate.getFullYear() == year ) {
       color = "indigo lighten-3";
-    } else {
+    } else if (curDate.getMonth() == month &&
+            curDate.getFullYear() == year) { // || curDate.getFullYear() != year) {
       color = "";
-    }
-    if (this.nowDate.getMonth() == month || (this.nowDate.getMonth() + 2) == month) {
+    } else {
       color = "grey-text text-lighten-2";
     }
     return color;

@@ -13,10 +13,10 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let item of createRange(numOfWeek); let i=index" >
-        <td class="main_cal_td" [ngClass]="calendarService.dateColor(weeks[i][j].month, weeks[i][j].day)"
-        *ngFor="let item1 of createRange(7); let j=index"
-        (click)="setCurrentDate()">
+      <tr *ngFor="let item of weeks; let i=index" >
+        <td class="main_cal_td" [ngClass]="calendarService.dateColor(weeks[i][j].year, weeks[i][j].month, weeks[i][j].day)"
+        *ngFor="let item1 of weeks[i]; let j=index"
+        (click)="setCurrentDate( weeks[i][j].year, weeks[i][j].month, weeks[i][j].day )">
         <b>{{weeks[i][j].day}}</b>
         </td>
       </tr>

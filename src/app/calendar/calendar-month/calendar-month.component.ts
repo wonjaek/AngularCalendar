@@ -35,4 +35,9 @@ export class CalendarMonthComponent implements OnInit {
   ngOnInit() {
   }
 
+  public setCurrentDate(year: number, month: number, day:number) {
+    //CalendarService.
+    this.calendarService.setDate(year, month, day);
+    console.log(year + " " + month + " " + day);
+  }
 }
