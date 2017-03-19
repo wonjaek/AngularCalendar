@@ -16,8 +16,16 @@ export class CalendarSideComponent implements OnInit {
     this.nowDate = calendarService.getNowDate();
     this.numOfWeek = this.calendarService.getNumOfWeek(this.nowDate);
     this.weeks = calendarService.getMonthCalendar(this.nowDate);
+    calendarService.setCalendarType(CalendarService.getCalendarMonthType());
   }
-  
+
+  public setPrev() : void{
+    this.calendarService.setPrev();
+  }
+  public setNext() : void {
+    this.calendarService.setNext();
+  }
+
   public getNowMonth() {
     return (this.nowDate.getMonth()+1);
   }

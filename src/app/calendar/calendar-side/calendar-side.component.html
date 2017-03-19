@@ -5,8 +5,12 @@
     </div>
     <div class="collapsible-body">
       <span>
-        <i class="material-icons right">keyboard_arrow_right</i>
-        <i class="material-icons right">keyboard_arrow_left</i>
+        <a (click)="setPrev()" class="btn-flat">
+          <i class="material-icons right">keyboard_arrow_left</i>
+        </a>
+        <a (click)="setNext()" class="btn-flat">
+          <i  class="material-icons right">keyboard_arrow_right</i>
+        </a>
       <table class="bordered centered side-calendar">
         <thead>
           <tr>
