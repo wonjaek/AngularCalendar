@@ -23,6 +23,19 @@ export class CalendarTopComponent implements OnInit {
   public setPrevDay() : void{
     this.calendarService.setDate(0, 0, -1);
   }
+
+/**
+ * set previous week or month or day.
+ */
+  public setPrev() : void
+  {
+    this.calendarService.setPrev();
+  }
+
+  public setNext() : void
+  {
+    this.calendarService.setNext();
+  }
   
   ngOnInit() {
   }

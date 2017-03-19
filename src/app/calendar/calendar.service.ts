@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 
+enum CalendarType {Day, Week, Month}
 @Injectable()
 export class CalendarService {
   private nowDate : Date;
@@ -8,6 +9,26 @@ export class CalendarService {
   // first week or last week in this month
   // 0: first week, 1: common week, 2: last week
   private weekState : number; 
+  private calendarType : CalendarType;
+
+  public setCalendarType(type) {
+    this.calendarType = type;
+  }
+
+  public static getCalendarMonthType()
+  {
+    return CalendarType.Month;
+  }
+
+  public static getCalendarDayType()
+  {
+    return CalendarType.Day;
+  }
+
+  public static getCalendarWeekType()
+  {
+    return CalendarType.Week;
+  }
 
   public setDate(year, month, date): void {
     let tDate: Date = this.nowDate;
@@ -21,6 +42,43 @@ export class CalendarService {
     this.weekState = 1;
   }
 
+/**
+ * Return days of this month.
+ * @param inputDate current day
+ */
+  public currentMonthDays(inputDate: Date)
+  {
+    let monthDay: number[] = [31, 28, 31, 30, 31, 31, 30, 31, 30, 31];
+    if (((inputDate.getFullYear() % 4 == 0) && (inputDate.getFullYear() % 100 != 0)) || (inputDate.getFullYear() % 400 == 0)) {
+      monthDay[1] = 29;
+    } else {
+      monthDay[1] = 28;
+    }
+    return monthDay[inputDate.getMonth()];
+  }
+
+  public setPrev() : void
+  {
+    switch(this.calendarType) {
+      case CalendarType.Day: 
+        this.setDate(0, 0, -1); break;
+      case CalendarType.Week: 
+        this.setDate(0, 0, -7);break;
+      case CalendarType.Month: 
+        this.setDate(0, 0, this.currentMonthDays(this.nowDate) * (-1)); break;
+    }
+  }
+  public setNext() : void
+  {
+    switch(this.calendarType) {
+      case CalendarType.Day: 
+        this.setDate(0, 0, 1); break;
+      case CalendarType.Week: 
+        this.setDate(0, 0, 7);break;
+      case CalendarType.Month: 
+        this.setDate(0, 0, this.currentMonthDays(this.nowDate)); break;
+    }
+  }
 //caution!
   public setNowDate(): void{
     this.nowDate = new Date();

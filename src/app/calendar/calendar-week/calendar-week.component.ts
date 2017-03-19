@@ -13,6 +13,8 @@ export class CalendarWeekComponent implements OnInit {
   constructor(private calendarService: CalendarService) {
     this.nowDate = this.calendarService.getNowDate();
     this.weeks = this.calendarService.getWeekArr(this.nowDate);
+    
+    calendarService.setCalendarType(CalendarService.getCalendarWeekType());
     console.log(this.weeks);
   }
 
