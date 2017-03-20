@@ -1,3 +1,7 @@
-#login_modal {
+#signin_modal {
     width: 30%;
+}
+
+#signup_modal {
+    width: 40%;
 }
