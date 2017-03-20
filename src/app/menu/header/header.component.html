@@ -8,8 +8,8 @@
             <li>
                 <!--<a href="#login_modal" *ngIf="!authService.isLogin" >Sign-In</a>
                 <a href="" *ngIf="authService.isLogin">Sign-Out</a>-->
-                <a href="#signin_modal" >Sign-In</a>
-                <a href="" >Sign-Out</a>
+                <a href="#signin_modal">Sign-In</a>
+                <a href="">Sign-Out</a>
             </li>
         </ul>
         <ul class="side-nav" id="mobile-demo">
@@ -18,8 +18,8 @@
             <li>
                 <!--<a href="#login_modal" *ngIf="!authService.isLogin">Sign-In</a>
                 <a href="" *ngIf="authService.isLogin">Sign-Out</a>-->
-                <a href="#signin_modal" >Sign-In</a>
-                <a href="" >Sign-Out</a>
+                <a href="#signin_modal">Sign-In</a>
+                <a href="">Sign-Out</a>
             </li>
         </ul>
     </div>
@@ -27,30 +27,41 @@
 
 <!-- SignIn Modal -->
 <div id="signin_modal" class="modal">
-    <div class="modal-content">
-        <h4>Sign-In</h4>
-        <input type="email" name="email" placeholder="Input Email" required>
-        <!--<input type="email" name="email" [(ngModel)]="userEmail" placeholder="Input Email">-->
-        <input type="password" name="password" placeholder="Input Password" required>
-        <!--<input type="password" name="password" [(ngModel)]="userEmail" placeholder="Input Password">-->
-    </div>
-    <div class="modal-footer">
-        <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Sign-In</a>
-    </div>
+    <form [formGroup]="signInForm">
+        <div class="modal-content">
+            <h4>Sign-In</h4>
+            <input formControlName="user_email" type="email" name="user_email" placeholder="Input Email">
+            <span class="red-text" *ngIf="validEmail(getFormSignInType())">이메일을 형식에 맞게 입력해 주세요</span>
+            <!--<input type="email" name="email" [(ngModel)]="userEmail" placeholder="Input Email">-->
+            <input type="password" name="password" placeholder="Input Password">
+            <!--<input type="password" name="password" [(ngModel)]="userEmail" placeholder="Input Password">-->
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Sign-In</a>
+        </div>
+    </form>
 </div>
 
 <!-- SignUp Modal -->
 <div id="signup_modal" class="modal">
-    <div class="modal-content">
-        <h4>Sign-Up</h4>
-        <input type="text" name="name" placeholder="Input Name" required>
-        <input type="email" name="email" placeholder="Input Email" required>
-        <!--<input type="email" name="email" [(ngModel)]="userEmail" placeholder="Input Email">-->
-        <input type="password" minlength="8" name="password" placeholder="Input Password" required>
-        <!--<input type="password" name="password" [(ngModel)]="userEmail" placeholder="Input Password">-->
-        <input type="password" minlength="8" name="password_confirm" placeholder="Confirm Password" required>
-    </div>
-    <div class="modal-footer">
-        <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Sign-Up</a>
-    </div>
+    <form [formGroup]="signUpForm">
+        <div class="modal-content">
+            <h4>Sign-Up</h4>
+            <input formControlName="name" type="text" name="name"
+             placeholder="Input Name">
+            <input formControlName="user_email" type="email" name="user_email" 
+                placeholder="Input Email">
+            <span class="red-text" *ngIf="(!validEmail(getFormSignUpType())) && this.signUpForm.controls.user_email.dirty">이메일을 형식에 맞게 입력해 주세요</span>
+            <button (click)="checkEmail()" *ngIf="validEmail(getFormSignUpType())">중복확인</button>
+            <input formControlName="password" type="password" 
+             name="password" placeholder="Input Password">
+            <span class="red-text" *ngIf="validPassword(getFormSignUpType())">비밀번호는 8자 이상</span>
+            <input formControlName="password_confirm" type="password" 
+                name="password_confirm" placeholder="Confirm Password">
+            <span class="red-text" *ngIf="validCheckPassword()">비밀번호가 다릅니다</span>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Sign-Up</a>
+        </div>
+    </form>
 </div>
