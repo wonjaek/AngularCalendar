@@ -17,13 +17,31 @@ export class MemberService {
             .catch(handleError);
     }
 
-    addMember(name: string, id: string, password: string): Observable<Member> {
+    addMember(no: number, name: string, id: string, password: string): Observable<Member> {
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
-        var body = { name, id, password };
+        var body = { no, name, id, password };
 
         return this.http.post(this.membersUrl, body, options)
             .map(this.extractData)
+            .catch(handleError);
+    }
+    
+    putMember(m: Member) {
+        let headers = new Headers({ 'Content-Type': 'application/json'});
+        let url = `${this.membersUrl}/${m.id}`;
+        return this.http
+            .put(url, JSON.stringify(m), { headers: headers })
+            .map((res: Response) => res.json())
+            .catch(handleError);
+    }
+
+    delMember(m: Member) {
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+        let url = `${this.membersUrl}/${m.id}`;
+        return this.http.delete(url, options)
+            .map((res: Response) => res.json())
             .catch(handleError);
     }
 
