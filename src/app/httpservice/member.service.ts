@@ -20,6 +20,15 @@ export class MemberService {
     addMember(name: string, id: string, password: string): Observable<Member> {
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
-        var body = { name}
+        var body = { name, id, password };
+
+        return this.http.post(this.membersUrl, body, options)
+            .map(this.extractData)
+            .catch(handleError);
+    }
+
+    private extractData(res: Response) {
+        let body = res.json();
+        return body.data || {};
     }
 }
