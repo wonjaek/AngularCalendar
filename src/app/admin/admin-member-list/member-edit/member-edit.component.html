@@ -4,11 +4,11 @@
       <label for="name">Name</label>
     </div>
     <div class="input-field col s12 m4 l4">
-      <input id="email" type="email" class="validate" #editMemberID placeholder="input email" />
+      <input id="email" type="email" class="validate" #editMemberID placeholder="input email" [(ngModel)]="editedEmail"/>
       <label for="email">Email</label>
     </div>
     <div class="input-field col s12 m4 l4">
-      <input id="password" class="validate" #editMemberPassword type="password" placeholder="Input Password" />
+      <input id="password" class="validate" #editMemberPassword type="password" placeholder="Input Password" [(ngModel)]="editedPaswws/>
       <label for="passsword">Password</label>
     </div>
     <div class="input-field col s12 m2 l2">
