@@ -6,17 +6,17 @@
       <label for="name">Name</label>
     </div>
     <div class="input-field col s12 m4 l4">
-      <input id="email" type="email" class="validate" #newMemberID placeholder="input email" />
+      <input id="email" type="email" class="validate" #newMemberEmail placeholder="input email" />
       <label for="email">Email</label>
     </div>
     <div class="input-field col s12 m4 l4">
-      <input id="password" class="validate" #newMemberPassword type="password" placeholder="Input Password" />
+      <input id="password" class="validate" #newMemberPassword type="password" placeholder="input password" />
       <label for="passsword">Password</label>
     </div>
     <div class="input-field col s12 m2 l2">
       <button class="waves-effect waves-light btn" (click)="
-        addMember(numOfMember+1, newMemberName.value, newMemberID.value, newMemberPassword.value);
-        newMemberName.value=''; newMemberID.value=''; newMemberPassword.value=''; getNumOfMembers();">
+        addMember(numOfMember+1, newMemberName.value, newMemberEmail.value, newMemberPassword.value);
+        newMemberName.value=''; newMemberEmail.value=''; newMemberPassword.value=''; getNumOfMembers();">
         add
       </button>
     </div>
@@ -25,7 +25,8 @@
   </div><br>
 
   <ul class="list">
-    <li *ngFor="let m of members; let i=index">{{m.no}}. {{m.name}} | id: {{m.id}} | pw: {{m.password}}
+    <li *ngFor="let m of members; let i=index">{{m.id}}. {{m.name}} | email: {{m.email}} | pw: {{m.password}}
+      <member-edit (doPut)="doPut($event)" (doDelete)="doDelete($event)" [members]="m"></member-edit>
     </li>
   </ul>
 </div>

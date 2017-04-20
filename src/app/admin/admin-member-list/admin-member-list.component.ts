@@ -34,9 +34,9 @@ export class AdminMemberListComponent implements OnInit {
         error => this.errMessage = <any>error);
   }
 
-  addMember(no:number, name:string, id:string, password: string){
-    if (!name && !id && !password) { return; }
-    this.memberService.addMember(no, name, id, password)
+  addMember(id:number, name:string, email:string, password: string){
+    if (!name && !email && !password) { return; }
+    this.memberService.addMember(id, name, email, password)
       .subscribe(
         member => this.members.push(member),
         error => this.errMessage = <any>error);

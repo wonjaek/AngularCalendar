@@ -17,10 +17,10 @@ export class ScheduleService {
             .catch(handleError);
     }
 
-    addSchedule(no: number, title: string, start_date: Date, end_date: Date, member_no: number): Observable<Schedule> {
+    addSchedule(id: number, title: string, start_date: Date, end_date: Date, member_no: number): Observable<Schedule> {
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
-        var body = { no, title, start_date, end_date, member_no };
+        var body = { id, title, start_date, end_date, member_no };
 
         return this.http.post(this.schedulesUrl, body, options)
             .map(this.extractData)
@@ -29,7 +29,7 @@ export class ScheduleService {
 
     putSchedule(s: Schedule) {
         let headers = new Headers({ 'Content-Type': 'application/json'});
-        let url = `${this.schedulesUrl}/${s.no}`;
+        let url = `${this.schedulesUrl}/${s.id}`;
         return this.http   
             .put(url, JSON.stringify(s), { headers: headers })
             .map((res: Response) => res.json())
@@ -39,7 +39,7 @@ export class ScheduleService {
     delSchedule(s: Schedule) {
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
-        let url = `${this.schedulesUrl}/${s.no}`;
+        let url = `${this.schedulesUrl}/${s.id}`;
         return this.http.delete(url, options)
             .map((res: Response) => res.json())
             .catch(handleError);

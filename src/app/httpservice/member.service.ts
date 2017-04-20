@@ -17,10 +17,10 @@ export class MemberService {
             .catch(handleError);
     }
 
-    addMember(no: number, name: string, id: string, password: string): Observable<Member> {
+    addMember(id: number, name: string, email: string, password: string): Observable<Member> {
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
-        var body = { no, name, id, password };
+        var body = { id, name, email, password };
 
         return this.http.post(this.membersUrl, body, options)
             .map(this.extractData)

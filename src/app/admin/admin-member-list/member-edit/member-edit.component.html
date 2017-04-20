@@ -1,22 +1,31 @@
 <div class="row" *ngIf="isEdit">
-    <div class="input-field col s12 m2 l2">
-      <input id="name" type="text" class="validate" #editMemberName placeholder="input name" [(ngModel)]="editedName" />
-      <label for="name">Name</label>
-    </div>
-    <div class="input-field col s12 m4 l4">
-      <input id="email" type="email" class="validate" #editMemberID placeholder="input email" [(ngModel)]="editedEmail"/>
-      <label for="email">Email</label>
-    </div>
-    <div class="input-field col s12 m4 l4">
-      <input id="password" class="validate" #editMemberPassword type="password" placeholder="Input Password" [(ngModel)]="editedPaswws/>
-      <label for="passsword">Password</label>
-    </div>
-    <div class="input-field col s12 m2 l2">
-      <button class="waves-effect waves-light btn" (click)="
-        addMember(numOfMember+1, newMemberName.value, newMemberID.value, newMemberPassword.value);
-        newMemberName.value=''; newMemberID.value=''; newMemberPassword.value=''; getNumOfMembers();">
-        add
+  <div class="input-field col s12 m2 l2">
+    <input id="edit_name" type="text" class="validate" #editMemberName [(ngModel)]="editedName" />
+    <label for="edit_name">Name</label>
+  </div>
+  <div class="input-field col s12 m3 l3">
+    <input id="edit_email" type="email" class="validate" #editMemberEmail [(ngModel)]="editedEmail" />
+    <label for="edit_email">Email</label>
+  </div>
+  <div class="input-field col s12 m3 l3">
+    <input id="edit_password" class="validate" #editMemberPassword type="password"  [(ngModel)]="editedPassword"
+    />
+    <label for="edit_passsword">Password</label>
+  </div>
+  <div class="input-field col s12 m4 l4">
+    <button class="waves-effect waves-light btn" (click)="
+        put(editMemberName.value, editMemberEmail.value, editMemberPassword.value);">
+        save
       </button>
-    </div>
-
+    <button class="waves-effect waves-light btn" (click)="delete()">
+        delete
+      </button>
+    <button class="waves-effect waves-light btn" (click)="isEdit=false">
+        cancel
+      </button>
+  </div>
+</div>
+<div class="row" *ngIf="isEdit === false">
+  <button class="waves-effect waves-light btn"
+  (click)="isEdit=true">modify</button>
 </div>
