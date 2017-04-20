@@ -5,6 +5,7 @@ export class MemberData implements InMemoryDbService {
         let members = [
             { id: 1, name: '관리자', email: 'admin@admin.com', password: 'admin' },
             { id: 2, name: '한대호', email: 'supreme2705@gmail.com', password: 'handaeho1' },
+            { id: 3, name: '한대호', email: 'supreme2705@gmail.com1', password: 'handaeho1' }
         ];
         return { members };
     }

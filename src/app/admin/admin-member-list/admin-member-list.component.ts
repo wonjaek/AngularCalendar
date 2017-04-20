@@ -11,6 +11,7 @@ import { MemberService } from '../../httpservice/member.service';
 export class AdminMemberListComponent implements OnInit {
   errMessage: string;
   members: Member[];
+  member: Member[];
   numOfMember: number;
 
   constructor(private memberService: MemberService) { }
@@ -18,6 +19,7 @@ export class AdminMemberListComponent implements OnInit {
   ngOnInit() { 
     this.getMembers();
     this.getNumOfMembers();
+    this.getMemberByEmail("supreme2705@gmail.com");
   }
 
   getMembers() {
@@ -26,7 +28,20 @@ export class AdminMemberListComponent implements OnInit {
         members => this.members = members,
         error => this.errMessage = <any>error);
   }
-
+  
+  // getMember(id: number) {
+  //   this.memberService.getMember(id)
+  //     .subscribe(
+  //       // member => this.member = member,
+  //       member => console.log(member),
+  //       error => this.errMessage = <any>error);
+  // }
+    public getMemberByEmail(email: string) {
+        this.memberService.getMemberByEmail(email)
+            .subscribe(
+                member => console.log(member),
+                error => this.errMessage = <any>error);
+    }
   getNumOfMembers() {
     this.memberService.getMembers()
       .subscribe(

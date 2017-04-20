@@ -17,6 +17,31 @@ export class MemberService {
             .catch(handleError);
     }
 
+    getMemberByEmail(email: string): Observable<Member[]> {
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+        let url = `${this.membersUrl}?email=${email}`;
+
+        return this.http.get(url, options)
+            .map(this.extractData)
+            .catch(handleError);
+    }
+
+    getMember(id: number): Observable<Member> {
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+        let email = "supreme2705@gmail.com";
+        let url = `${this.membersUrl}?email=${email}`;
+        console.log(url);
+
+        // console.log(this.http.get(url,options).map(this.extractData)
+        // .subscribe(member => console.log(member),
+        // error => console.log(error)));
+        return this.http.get(url, options)
+            .map(this.extractData)
+            .catch(handleError);
+    }
+
     addMember(id: number, name: string, email: string, password: string): Observable<Member> {
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
