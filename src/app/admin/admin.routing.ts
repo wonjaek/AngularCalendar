@@ -2,11 +2,15 @@ import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 
 import { AdminMainComponent } from './admin-main.component';
+import { AdminMemberListComponent } from './admin-member-list/admin-member-list.component';
 
 const AdminContent_Router: Routes = [ 
     {
         path: 'admin',
-        component: AdminMainComponent
+        component: AdminMainComponent,
+        children: [
+            { path: '', component: AdminMemberListComponent}
+        ]
     }
 ];
 
@@ -14,6 +18,6 @@ const AdminContent_Router: Routes = [
     imports: [RouterModule.forChild(AdminContent_Router)],
     exports: [RouterModule]
 })
-export class CalendarRoutingModule { }
+export class AdminRoutingModule { }
 
 

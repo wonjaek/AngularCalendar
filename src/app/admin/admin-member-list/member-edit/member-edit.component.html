@@ -1,16 +1,14 @@
-<div class="row">
-  <div class="row">
-    <h4>Member Management</h4>
+<div class="row" *ngIf="isEdit">
     <div class="input-field col s12 m2 l2">
-      <input id="name" type="text" class="validate" #newMemberName placeholder="input name" />
+      <input id="name" type="text" class="validate" #editMemberName placeholder="input name" [(ngModel)]="editedName" />
       <label for="name">Name</label>
     </div>
     <div class="input-field col s12 m4 l4">
-      <input id="email" type="email" class="validate" #newMemberID placeholder="input email" />
+      <input id="email" type="email" class="validate" #editMemberID placeholder="input email" />
       <label for="email">Email</label>
     </div>
     <div class="input-field col s12 m4 l4">
-      <input id="password" class="validate" #newMemberPassword type="password" placeholder="Input Password" />
+      <input id="password" class="validate" #editMemberPassword type="password" placeholder="Input Password" />
       <label for="passsword">Password</label>
     </div>
     <div class="input-field col s12 m2 l2">
@@ -20,12 +18,5 @@
         add
       </button>
     </div>
-    <p class="error" *ngIf="errMessage">{{errMessage}}</p>
-    {{resultMessage}}
-  </div><br>
 
-  <ul class="list">
-    <li *ngFor="let m of members; let i=index">{{m.no}}. {{m.name}} | id: {{m.id}} | pw: {{m.password}}
-    </li>
-  </ul>
 </div>

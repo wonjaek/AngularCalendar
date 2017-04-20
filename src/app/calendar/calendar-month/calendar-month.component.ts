@@ -38,6 +38,7 @@ export class CalendarMonthComponent implements OnInit {
   public setCurrentDate(year: number, month: number, day:number) {
     //CalendarService.
     this.calendarService.setDate(year, month, day);
+    console.log(this.calendarService.getNowDate());
     console.log(year + " " + month + " " + day);
   }
 }
