@@ -16,6 +16,7 @@ import { MemberData } from './data/member-data';
 import { AppComponent } from './app.component';
 import { MainComponent } from './main/main.component';
 import { NotFoundComponent } from './notfound/notfound.component';
+import './rxjs-operators';
 
 @NgModule({
   declarations: [
