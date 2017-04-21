@@ -34,10 +34,6 @@ export class HeaderComponent {
 
     constructor(private memberService: MemberService, private vs: ValidatorService, private fb: FormBuilder)  {
         //rxjs KeyStream
-        // this.itemsOperator = this.searchKeyStream
-        //     .debounceTime(200)
-        //     .distinctUntilChanged()
-        //     .switchMap((keyword: string) => this.memberService.getMemberByEmail(keyword)).subscribe(members => this.members = members);
         this.searchKeyStream
             .debounceTime(100)
             .distinctUntilChanged()
