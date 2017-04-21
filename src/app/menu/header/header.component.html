@@ -47,18 +47,12 @@
     <form [formGroup]="signUpForm">
         <div class="modal-content">
             <h4>Sign-Up</h4>
-            <input formControlName="name" type="text" name="name"
-             placeholder="Input Name">
-            <input #inputEmail (keyup)="checkEmail(inputEmail.value)" type="email" name="user_email" placeholder="Input Email">
-            <ul>
-                <li *ngFor="let item of itemsOperator | async">{{item.email}}</li>
-            </ul>
-                <span>{{infoMessage}}</span>
-            <!--<input #inputEmail (keyup)="search(inputEmail.value)" formControlName="user_email" type="email" name="user_email" 
-                placeholder="Input Email">-->
-            <!--<span class="red-text" *ngIf="(!validEmail(getFormSignUpType())) && this.signUpForm.controls.user_email.dirty">이메일을 형식에 맞게 입력해 주세요</span>-->
-            <button (click)="checkEmail()" *ngIf="validEmail(getFormSignUpType())">중복확인</button>
-            <input formControlName="password" type="password" 
+            <input formControlName="name" type="text" name="name" placeholder="Input Name">
+
+            <input #inputEmail (keyup)="searchEmail(inputEmail.value); isEmail=true;" type="email" name="user_email" placeholder="Input Email">
+            <span *ngIf="isEmail">{{infoMessage}}</span>
+
+            <button (click)="checkEmail()" *ngIf="validEmail(getFormSignUpType())">중복확인</button> <input formControlName="password" type="password" 
              name="password" placeholder="Input Password">
             <span class="red-text" *ngIf="validPassword(getFormSignUpType())">비밀번호는 8자 이상</span>
             <input formControlName="password_confirm" type="password" 

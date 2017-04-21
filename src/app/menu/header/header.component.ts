@@ -22,21 +22,27 @@ export class HeaderComponent {
     private signUpForm: any;
 
     itemsOperator: Observable<Member[]>;
+    inputValue: string;
+    members: Member[] = null;
+    isEmail: boolean = false;
     private searchKeyStream = new Subject<string>();
     private errMessage: string;
-    private infoMessage: string = "test";
-    private member_results: Member[];
+    private infoMessage: string;
     private user_email: FormControl;
     private password: FormControl;
     private name: FormControl;
 
     constructor(private memberService: MemberService, private vs: ValidatorService, private fb: FormBuilder)  {
         //rxjs KeyStream
-        this.itemsOperator = this.searchKeyStream
-            .debounceTime(300)
+        // this.itemsOperator = this.searchKeyStream
+        //     .debounceTime(200)
+        //     .distinctUntilChanged()
+        //     .switchMap((keyword: string) => this.memberService.getMemberByEmail(keyword)).subscribe(members => this.members = members);
+        this.searchKeyStream
+            .debounceTime(100)
             .distinctUntilChanged()
-            .switchMap((keyword: string) => this.memberService.getMemberByEmail(keyword));
-
+            .switchMap((keyword: string) => this.memberService.getMemberByEmail(keyword))
+            .subscribe(members => this.checkEmail(this.inputValue, members)); 
         this.user_email = vs.getEmailValidator();
         this.password = vs.getPasswordValidator();
         this.name = vs.getNameValidator();
@@ -108,9 +114,22 @@ export class HeaderComponent {
         return result;
     }
 
-    public checkEmail(email: string) {
+    public searchEmail(email: string) {
+        console.log(email);
+        console.log("1");
+        this.inputValue = email;
         this.searchKeyStream.next(email);
     }
-    
 
+    public checkEmail(email:string, members: Member[]) {
+        if (members.length == 0) {
+            this.infoMessage = "ok";
+        } else {
+            for (let member of members) {
+                if (this.inputValue == member.email) {
+                    this.infoMessage = "duplicate";
+                }
+            }
+        }
+    }
 }
